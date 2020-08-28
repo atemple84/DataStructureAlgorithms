@@ -1,2 +1,0 @@
-C:\Users\adste\source\repos\DataStructureAlgorithms\Debug\DataStructureAlgorithms.exe
-C:\Users\adste\source\repos\DataStructureAlgorithms\Debug\DataStructureAlgorithms.pdb
