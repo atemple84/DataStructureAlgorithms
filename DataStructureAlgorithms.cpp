@@ -9,6 +9,8 @@
 #include <stack>
 #include <queue>
 
+#include "BinarySortTree.h"
+
 using namespace std;
 
 void swap(int& a, int& b)
@@ -73,9 +75,9 @@ vector<int> SpiralOrder(vector<vector<int> > matrix)
     if (matrix.empty() || matrix[0].empty())
         return ret;
     int sr = 0;
-    int er = matrix.size()-1;
+    int er = matrix.size() - 1;
     int sc = 0;
-    int ec = matrix[0].size()-1;
+    int ec = matrix[0].size() - 1;
 
     int matrixSize = er * ec;
     int spiralCount = 0;
@@ -302,9 +304,9 @@ bool checkSortedArray(vector<int> a, int n)
     if (n == 0 || n == 1)
         return true;
 
-    bool smallerSorted = checkSortedArray(a, n -  1);
+    bool smallerSorted = checkSortedArray(a, n - 1);
 
-    return smallerSorted && a[n-2] < a[n-1];
+    return smallerSorted && a[n - 2] < a[n - 1];
 }
 
 int SumOfArray(vector<int> a, int n)
@@ -312,7 +314,7 @@ int SumOfArray(vector<int> a, int n)
     if (n == 0)
         return 0;
 
-    return a[n-1] + SumOfArray(a, n - 1);
+    return a[n - 1] + SumOfArray(a, n - 1);
 }
 
 int firstIndex(vector<int> a, int i, int x)
@@ -366,7 +368,7 @@ bool palindrome(string str, int i, int n)
         return true;
 
     if (str[i] == str[n])
-        return palindrome(str, i+1, n-1);
+        return palindrome(str, i + 1, n - 1);
     else
         return false;
 }
@@ -428,7 +430,7 @@ int convertStringToInt(char str[], int n)
     return smallAns * 10 + lastDigit;
 }
 
-void printPermutations(char input [], int i)
+void printPermutations(char input[], int i)
 {
     if (input[i] == '\0')
     {
@@ -1163,14 +1165,14 @@ string removeDuplicates(string S)
 }
 
 template<typename T>
-class TreeNode
+class TreeNode2
 {
 public:
     T data;
-    vector<TreeNode*> children;
+    vector<TreeNode2*> children;
 
-    TreeNode(T d) : data(d) {}
-    virtual ~TreeNode()
+    TreeNode2(T d) : data(d) {}
+    virtual ~TreeNode2()
     {
         for (int i = 0; i < children.size(); ++i)
         {
@@ -1182,7 +1184,7 @@ public:
 };
 
 template<typename T>
-void deleteTree(TreeNode<T>*& root)
+void deleteTree(TreeNode2<T>*& root)
 {
     if (!root)
         return;
@@ -1196,7 +1198,7 @@ void deleteTree(TreeNode<T>*& root)
 }
 
 template<typename T>
-void printTree(TreeNode<T>* root)
+void printTree(TreeNode2<T>* root)
 {
     if (!root)
         return;
@@ -1209,18 +1211,18 @@ void printTree(TreeNode<T>* root)
         printTree(node);
 }
 
-TreeNode<int>* takeInputLvl()
+TreeNode2<int>* takeInputLvl()
 {
     int rootData;
     cout << "Enter root data: ";
     cin >> rootData;
-    TreeNode<int>* root = new TreeNode<int>(rootData);
-    queue<TreeNode<int>*> q;
+    TreeNode2<int>* root = new TreeNode2<int>(rootData);
+    queue<TreeNode2<int>*> q;
     q.push(root);
 
     while (!q.empty())
     {
-        TreeNode<int>* front = q.front();
+        TreeNode2<int>* front = q.front();
         q.pop();
 
         cout << "Enter num of children of " << front->data << ": ";
@@ -1232,7 +1234,7 @@ TreeNode<int>* takeInputLvl()
             cout << "Enter child " << i << " of parent " << front->data << ": ";
             int childData;
             cin >> childData;
-            TreeNode<int>* child = new TreeNode<int>(childData);
+            TreeNode2<int>* child = new TreeNode2<int>(childData);
             front->children.push_back(child);
             q.push(child);
         }
@@ -1242,12 +1244,12 @@ TreeNode<int>* takeInputLvl()
     return root;
 }
 
-TreeNode<int>* takeInput()
+TreeNode2<int>* takeInput()
 {
     int rootData;
     cout << "Enter data: ";
     cin >> rootData;
-    TreeNode<int>* root = new TreeNode<int>(rootData);
+    TreeNode2<int>* root = new TreeNode2<int>(rootData);
     int n;
     cout << "Enter number of children of " << rootData << ": ";
     cin >> n;
@@ -1261,30 +1263,30 @@ TreeNode<int>* takeInput()
 }
 
 template<typename T>
-void printTreeLvl(TreeNode<T>* root)
+void printTreeLvl(TreeNode2<T>* root)
 {
     if (!root)
         return;
 
-    queue<TreeNode<T>*> q;
+    queue<TreeNode2<T>*> q;
     q.push(root);
 
-while (!q.empty())
-{
-    TreeNode<T>* front = q.front();
-    q.pop();
-
-    cout << front->data << ": ";
-    for (auto node : front->children)
+    while (!q.empty())
     {
-        cout << node->data << ", ";
-        q.push(node);
+        TreeNode2<T>* front = q.front();
+        q.pop();
+
+        cout << front->data << ": ";
+        for (auto node : front->children)
+        {
+            cout << node->data << ", ";
+            q.push(node);
+        }
+        cout << endl;
     }
-    cout << endl;
-}
 }
 
-int countTreeNodes(TreeNode<int>* root)
+int countTreeNodes(TreeNode2<int>* root)
 {
     if (!root)
         return 0;
@@ -1298,7 +1300,7 @@ int countTreeNodes(TreeNode<int>* root)
     return count;
 }
 
-int heightOfTree(TreeNode<int>* root)
+int heightOfTree(TreeNode2<int>* root)
 {
     if (!root)
         return 0;
@@ -1312,7 +1314,7 @@ int heightOfTree(TreeNode<int>* root)
     return maxHeight + 1;
 }
 
-void depthOfNode(TreeNode<int>* root, int k)
+void depthOfNode(TreeNode2<int>* root, int k)
 {
     if (!root)
         return;
@@ -1329,7 +1331,7 @@ void depthOfNode(TreeNode<int>* root, int k)
     }
 }
 
-int countLeafNodes(TreeNode<int>* root)
+int countLeafNodes(TreeNode2<int>* root)
 {
     if (!root)
         return 0;
@@ -1345,7 +1347,7 @@ int countLeafNodes(TreeNode<int>* root)
     return childLeafNodes;
 }
 
-void preOrder(TreeNode<int>* root)
+void preOrder(TreeNode2<int>* root)
 {
     if (!root)
         return;
@@ -1357,7 +1359,7 @@ void preOrder(TreeNode<int>* root)
     }
 }
 
-void postOrder(TreeNode<int>* root)
+void postOrder(TreeNode2<int>* root)
 {
     if (!root)
         return;
@@ -1434,25 +1436,25 @@ BTNode<int>* takeInputBTTreeLevel()
     while (!q.empty())
     {
         auto top = q.front();
-q.pop();
+        q.pop();
 
-cout << "Enter left:" << endl;
-cin >> data;
-if (data != -1)
-{
-    BTNode<int>* left = new BTNode<int>(data);
-    top->left = left;
-    q.push(left);
-}
+        cout << "Enter left:" << endl;
+        cin >> data;
+        if (data != -1)
+        {
+            BTNode<int>* left = new BTNode<int>(data);
+            top->left = left;
+            q.push(left);
+        }
 
-cout << "Enter right:" << endl;
-cin >> data;
-if (data != -1)
-{
-    BTNode<int>* right = new BTNode<int>(data);
-    top->right = right;
-    q.push(right);
-}
+        cout << "Enter right:" << endl;
+        cin >> data;
+        if (data != -1)
+        {
+            BTNode<int>* right = new BTNode<int>(data);
+            top->right = right;
+            q.push(right);
+        }
     }
 
     return root;
@@ -1747,10 +1749,10 @@ BTNode<int>* buildTree2(vector<int>& inorder, vector<int>& postorder)
     return buildTreeHelper(inorder, postorder, 0, inorder.size() - 1, 0, postorder.size() - 1);
 }
 
-pair<int,int> treeHeight(BTNode<int>* root)
+pair<int, int> treeHeight(BTNode<int>* root)
 {
     if (!root)
-        return make_pair(0,0);
+        return make_pair(0, 0);
 
     pair<int, int> leftPair = treeHeight(root->left);
     pair<int, int> rightPair = treeHeight(root->right);
@@ -1797,13 +1799,25 @@ bool rootToNode(BTNode<int>* root, int val, vector<int>& ans)
 // 1 2 2 3 4 4 3 -1 -1 -1 -1 -1 -1 -1 -1
 int main()
 {
-    BTNode<int>* root = takeInputBTTreeLevel();
-    vector<int> results;
-    cout << (rootToNode(root, 11, results) ? "found" : "not found") << endl;
-    for (auto result : results)
+    BST b;
+    b.insert(4);
+    b.insert(2);
+    b.insert(1);
+    b.insert(3);
+    b.insert(6);
+    b.insert(5);
+    b.insert(7);
+
+    b.print();
+
+    TreeNode* head = b.convertToLL();
+    TreeNode* tmp = head;
+    while (tmp)
     {
-        cout << result << endl;
+        cout << tmp->val << "->";
+        tmp = tmp->right;
     }
+    
     return 0;
     /*
     int value,power;
@@ -1824,7 +1838,7 @@ int main()
     while (split != string::npos)
     {
         int nextSplit = line.find(' ', split + 1);
-        a.push_back(stoi(line.substr(split+1, nextSplit - split)));
+        a.push_back(stoi(line.substr(split + 1, nextSplit - split)));
         split = nextSplit;
     }
 
