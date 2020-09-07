@@ -141,12 +141,14 @@
   <ItemGroup>
     <ClCompile Include="BinarySortTree.cpp" />
     <ClCompile Include="DataStructureAlgorithms.cpp" />
+    <ClCompile Include="HashMapLesson.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinarySortTree.h" />
+    <ClInclude Include="HashMapLesson.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

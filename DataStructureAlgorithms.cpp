@@ -10,6 +10,7 @@
 #include <queue>
 
 #include "BinarySortTree.h"
+#include "HashMapLesson.h"
 
 using namespace std;
 
@@ -1799,25 +1800,31 @@ bool rootToNode(BTNode<int>* root, int val, vector<int>& ans)
 // 1 2 2 3 4 4 3 -1 -1 -1 -1 -1 -1 -1 -1
 int main()
 {
-    BST b;
-    b.insert(4);
-    b.insert(2);
-    b.insert(1);
-    b.insert(3);
-    b.insert(6);
-    b.insert(5);
-    b.insert(7);
-
-    b.print();
-
-    TreeNode* head = b.convertToLL();
-    TreeNode* tmp = head;
-    while (tmp)
+    HashMap<int> ourmap;
+    for (int i = 0; i < 10; ++i)
     {
-        cout << tmp->val << "->";
-        tmp = tmp->right;
+        char c = '0' + i;
+        string key = "abc";
+        key += c;
+        int value = i + 1;
+        ourmap.insert(key, value);
+        cout << ourmap.getLoadFactor() << endl;
     }
-    
+
+    cout << ourmap.size() << endl;
+
+    ourmap.remove("abc1");
+    ourmap.remove("abc6");
+    for (int i = 0; i < 10; ++i)
+    {
+        char c = '0' + i;
+        string key = "abc";
+        key += c;
+        int value = i + 1;
+        cout << key << " " << ourmap.getValue(key) << endl;
+    }
+    cout << ourmap.size() << endl;
+
     return 0;
     /*
     int value,power;
