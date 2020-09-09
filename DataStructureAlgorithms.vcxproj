@@ -142,6 +142,7 @@
     <ClCompile Include="BinarySortTree.cpp" />
     <ClCompile Include="DataStructureAlgorithms.cpp" />
     <ClCompile Include="HashMapLesson.cpp" />
+    <ClCompile Include="PriorityQueue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -149,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="BinarySortTree.h" />
     <ClInclude Include="HashMapLesson.h" />
+    <ClInclude Include="PriorityQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
