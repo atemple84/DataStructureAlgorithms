@@ -12,6 +12,7 @@
 #include "BinarySortTree.h"
 #include "HashMapLesson.h"
 #include "PriorityQueue.h"
+#include "GraphLesson.h"
 
 using namespace std;
 
@@ -1797,12 +1798,101 @@ bool rootToNode(BTNode<int>* root, int val, vector<int>& ans)
     return found;
 }
 
+int fib2(int n, int* arr)
+{
+    if (n == 0 || n == 1) return n;
+
+    if (arr[n] != 0)
+    {
+        return arr[n];
+    }
+
+    int output = fib2(n - 1, arr) + fib2(n - 2, arr);
+    arr[n] = output;
+    return output;
+}
+
+int fib3(int n)
+{
+    int* arr = new int[n + 1];
+    arr[0] = 0;
+    arr[1] = 1;
+
+    for (int i = 2; i <= n; ++i)
+    {
+        arr[i] = arr[i - 1] + arr[i - 2];
+    }
+
+    int ret = arr[n];
+    delete[] arr;
+
+    return ret;
+}
+
+int minSteps(int n)
+{
+    if (n <= 1) return 0;
+
+    int x = minSteps(n - 1);
+    int y, z;
+    y = z = INT_MAX;
+    if (n % 2 == 0)
+        y = minSteps(n / 2);
+    if (n % 3 == 0)
+        z = minSteps(n / 3);
+
+    int ans = min(x, min(y, z)) + 1;
+    return ans;
+}
+
+int minSteps2(int n, int* arr)
+{
+    if (n <= 1) return 0;
+
+    if (arr[n] >= 0)
+        return arr[n];
+
+    int x = minSteps2(n - 1, arr);
+    int y, z;
+    y = z = INT_MAX;
+    if (n % 2 == 0)
+        y = minSteps(n / 2);
+    if (n % 3 == 0)
+        z = minSteps(n / 3);
+
+    int ans = min(x, min(y, z)) + 1;
+    arr[n] = ans;
+    return ans;
+}
+
+int minSteps3(int n)
+{
+    if (n <= 1) return 0;
+
+    int* arr = new int[n + 1];
+    arr[0] = 0;
+    arr[1] = 0;
+    for (int i = 2; i <= n; ++i)
+    {
+        arr[i] = arr[i - 1] + 1;
+        if (i % 2 == 0)
+            arr[i] = min(arr[i], arr[i / 2] + 1);
+        if (i % 3 == 0)
+            arr[i] = min(arr[i], arr[i / 3] + 1);
+    }
+
+    int ret = arr[n];
+    delete[] arr;
+    return ret;
+}
+
 // 1 2 3 4 5 6 7 -1 -1 8 9 -1 -1 -1 -1 -1 -1 -1 -1
 // 1 2 2 3 4 4 3 -1 -1 -1 -1 -1 -1 -1 -1
 int main()
 {
-    int input[] = { 5,6,9,12,3,13,2 };
-    ksmallest(input, 7, 3);
+    vector<vector<int> > graph = adjacencyMatrix();
+    BFS(graph);
+    cout << "Number of Components: " << ComponentCountBFS(graph) << endl;
     return 0;
     /*
     int value,power;

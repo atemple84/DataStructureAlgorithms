@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="BinarySortTree.cpp" />
     <ClCompile Include="DataStructureAlgorithms.cpp" />
+    <ClCompile Include="GraphLesson.cpp" />
     <ClCompile Include="HashMapLesson.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
   </ItemGroup>
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinarySortTree.h" />
+    <ClInclude Include="GraphLesson.h" />
     <ClInclude Include="HashMapLesson.h" />
     <ClInclude Include="PriorityQueue.h" />
   </ItemGroup>
